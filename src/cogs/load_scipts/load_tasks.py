@@ -15,10 +15,10 @@ async def load_tasks(client: commands.Bot, reload: bool = False):
         if file.endswith(".py"):
             try:
                 if reload:
-                    client.reload_extension(f"src.cogs.tasks.{file[:-3]}")
+                    client.reload_extension(f"cogs.tasks.{file[:-3]}")
                     logger.info(f"Reloaded task: {file[:-3]}")
                 else:
-                    await client.load_extension(f"src.cogs.tasks.{file[:-3]}")
+                    await client.load_extension(f"cogs.tasks.{file[:-3]}")
                     logger.info(f"Loaded task: {file[:-3]}")
             except Exception as e:
                 logger.error(f"Failed to load task: {file[:-3]}. {e}")

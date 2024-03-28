@@ -19,4 +19,4 @@ class OnReady(commands.Cog):
 
 async def setup(client: commands.Bot):
     """Setup function for the on_ready cog."""
-    client.add_cog(OnReady(client))
+    await client.add_cog(OnReady(client))

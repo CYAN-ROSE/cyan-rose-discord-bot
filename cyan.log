@@ -1,2 +1,6 @@
 Logging Initialized.
 Welcome to Cyan Rose.
+Loaded command: pingcmd
+Loaded event: on_ready
+Logged in as Cyan Rose#1151 (1222974960944021514)
+Command: Ping | Latency: 242.11977599770762ms

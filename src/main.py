@@ -26,5 +26,5 @@ if __name__ == "__main__":
     logger.info("Welcome to Cyan Rose.")
     with open("./src/assets/ASCII.txt", "r") as f:
         print(f.read())
-
+        
     bot.run() # Runs the bot
