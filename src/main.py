@@ -1,6 +1,4 @@
 # src/main.py
-# version: 1.0
-# last updated: 29-03-24
 
 import logging
 from rich.logging import RichHandler # RichHandler is pretty :3
