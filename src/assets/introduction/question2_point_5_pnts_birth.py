@@ -8,8 +8,8 @@ import logging
 
 logger = logging.getLogger("cyan")
 
-birth_embed = Embed(title="When were you born?", 
-                    description="Hint: Click the dropdown menu below and pick the range that fits you!\n\nPlease do note we do not applicants under the age of 13 due to Discord's Terms of Service.",
+birth_embed = Embed(title="Roughly how old are you?", 
+                    description="Hint: Click the dropdown menu below and pick the range that fits you!\n\nPlease do note we don't accept applicants under the age of 13 due to Discord's Terms of Service.",
                     color=0x00ffff,)
 birth_embed.set_thumbnail(url="src/assets/cyan-rose.png")
 
