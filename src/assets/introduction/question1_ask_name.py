@@ -21,7 +21,7 @@ class name_modal(Modal):
     
     async def interaction_check(self, interaction: Interaction):
         
-        Introduction.create(user_id=interaction.user.id, name=self.items[0].value)
+        Introduction.create(user_id=interaction.user.id, type=0, introduction=self.items[0].value)
         await interaction.response.edit_message(embed=question2_ask_birth.birth_embed, view=question2_ask_birth.birth_view())
 
 class name_view(View):

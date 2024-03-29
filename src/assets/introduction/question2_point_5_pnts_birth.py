@@ -2,7 +2,7 @@ from discord.ui import Select, View
 from discord import Embed, Interaction, SelectOption
 from database.tables import Introduction
 
-from . import *
+from . import question3_ask_reason
 
 import logging
 
@@ -34,4 +34,4 @@ class birth_view(View):
         Introduction.create(user_id=interaction.user.id, part=1, Introduction=f"age range = {interaction.data['values'][0]}")
         logger.debug("Added user's birth year range to the database.")
 
-        await interaction.response.edit_message(embed=None, view=None)
+        await interaction.response.edit_message(embed=question3_ask_reason.reason_embed, view=question3_ask_reason.reason_view())

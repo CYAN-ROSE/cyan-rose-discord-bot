@@ -2,7 +2,7 @@ from discord.ui import Button, View, Modal, TextInput
 from discord import Embed, ButtonStyle, Interaction
 from database.tables import Introduction
 
-from . import question2_point_5_pnts_birth
+from . import question2_point_5_pnts_birth, question3_ask_reason
 
 import logging
 
@@ -22,7 +22,7 @@ class birth_modal(Modal):
     async def interaction_check(self, interaction: Interaction):
         
         Introduction.create(user_id=interaction.user.id, part=1, introduction=f"{self.items[0].value}")
-        await interaction.response.edit_message(embed=None, view=None)
+        await interaction.response.edit_message(embed=question3_ask_reason.reason_embed, view=question3_ask_reason.reason_view())
 
 class birth_view(View):
     def __init__(self):
