@@ -1,4 +1,4 @@
-from discord.ui import Button, Modal, button
+from discord.ui import Button, View, button
 from discord import Embed, ButtonStyle, Interaction
 
 from . import question1_ask_name
@@ -15,7 +15,7 @@ disclosure_embed.add_field(name="What do we do with your information?", value="A
 disclosure_embed.add_field(name="What if I don't want to answer a question?", value="You are able to input text as an answer to each question, if you don't feel like answering something, put that into your message. An example is, for political view, you may say, 'I would rather not say.'. just do keep in mind that this will affect the mods decision.", inline=False)
 disclosure_embed.add_field(name="To continue...", value="Click the button below to continue to the first question.", inline=False)
 
-class disclosure_modal(Modal):
+class disclosure_view(View):
     def __init__(self):
         super().__init__(timeout=None, title="The Interview Process")
         

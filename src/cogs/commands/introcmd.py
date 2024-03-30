@@ -15,7 +15,7 @@ class IntroCmd(commands.Cog):
     async def intro(self, interaction : Interaction):
         logger.info(f"Command: Intro | User: {interaction.user}")
 
-        await interaction.user.send(embed=question0_front_face.disclosure_embed, view=question0_front_face.disclosure_modal())
+        await interaction.user.send(embed=question0_front_face.disclosure_embed, view=question0_front_face.disclosure_view())
 
         await interaction.response.send_message('You have been sent a DM with the introduction interview!')
 

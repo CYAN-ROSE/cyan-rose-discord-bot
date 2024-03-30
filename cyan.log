@@ -240,3 +240,10 @@ Command: Intro | User: mossmarcia
 Button: Get Name | User: mossmarcia
 Button: Get Birth | User: mossmarcia
 Button: Get Birth | User: mossmarcia
+Logging Initialized.
+Welcome to Cyan Rose.
+Loaded command: pingcmd
+Loaded command: introcmd
+Loaded event: on_ready
+Logged in as Cyan Rose#1151 (1222974960944021514)
+Command: Intro | User: mossmarcia
