@@ -20,6 +20,6 @@ class Introduction(BaseModel):
     2 - Reason for joining
     3 - Political Views
     '''
-    user_id = pw.IntegerField(primary_key=True)
+    user_id = pw.IntegerField()
     part = pw.IntegerField()
     introduction = pw.TextField()
