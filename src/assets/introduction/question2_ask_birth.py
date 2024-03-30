@@ -2,6 +2,8 @@ from discord.ui import Button, View, Modal, TextInput, button
 from discord import Embed, ButtonStyle, Interaction
 from database.tables import Introduction
 
+from datetime import date
+
 from . import question2_point_5_pnts_birth, question3_ask_reason
 
 import logging
@@ -22,6 +24,20 @@ class birth_modal(Modal):
     
     async def interaction_check(self, interaction: Interaction):
         
+        # Validate Date
+        try:
+            day, month, year = self.birth_input.value.split("/")
+            day, month, year = int(day), int(month), int(year)
+        except ValueError:
+            return await interaction.response.send_message("Invalid date format! Please enter your date of birth in the following format: DD/MM/YYYY")
+        
+        if day < 1 or day > 31:
+            return await interaction.response.send_message("Invalid day! Please enter a day between 1 and 31.")
+        if month < 1 or month > 12:
+            return await interaction.response.send_message("Invalid month! Please enter a month between 1 and 12.")
+        if year < 1900 or year > int(date.year + 1):
+            return await interaction.response.send_message(f"Invalid year! Please enter a year between 1900 and {int(date.year + 1)}.")
+
         Introduction.create(user_id=interaction.user.id, part=1, introduction=f"{self.birth_input.value}")
         await interaction.response.edit_message(embed=question3_ask_reason.reason_embed, view=question3_ask_reason.reason_view())
 
