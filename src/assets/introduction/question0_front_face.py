@@ -17,7 +17,7 @@ disclosure_embed.add_field(name="To continue...", value="Click the button below 
 
 class disclosure_view(View):
     def __init__(self):
-        super().__init__(timeout=None, title="The Interview Process")
+        super().__init__(timeout=None)
         
     @button(label="Continue", style=ButtonStyle.primary)
     async def continue_button(self, interaction : Interaction, button : Button):
