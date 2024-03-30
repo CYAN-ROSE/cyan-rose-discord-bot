@@ -2,7 +2,7 @@ from discord.ui import Button, View, Modal, TextInput, button
 from discord import Embed, ButtonStyle, Interaction
 from database.tables import Introduction
 
-from datetime import date
+from datetime import datetime
 
 from . import question2_point_5_pnts_birth, question3_ask_reason
 
@@ -35,13 +35,13 @@ class birth_modal(Modal):
             return await interaction.response.send_message("Invalid day! Please enter a day between 1 and 31.")
         if month < 1 or month > 12:
             return await interaction.response.send_message("Invalid month! Please enter a month between 1 and 12.")
-        if year < 1900 or year > int(date.year + 1):
-            return await interaction.response.send_message(f"Invalid year! Please enter a year between 1900 and {int(date.year + 1)}.")
+        if year < 1900 or year > int(datetime.now().year) + 1:
+            return await interaction.response.send_message(f"Invalid year! Please enter a year between 1900 and {int(datetime.now().year)}.")
 
         if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 1).exists():
-            Introduction.update(introduction=self.name_input.value).where(Introduction.user_id == interaction.user.id, Introduction.part == 1).execute()
-
-        Introduction.create(user_id=interaction.user.id, part=1, introduction=f"{self.birth_input.value}")
+            Introduction.update(introduction=self.birth_input.value).where(Introduction.user_id == interaction.user.id, Introduction.part == 1).execute()
+        else:
+            Introduction.create(user_id=interaction.user.id, part=1, introduction=f"{self.birth_input.value}")
         await interaction.response.edit_message(embed=question3_ask_reason.reason_embed, view=question3_ask_reason.reason_view())
 
 class birth_view(View):
