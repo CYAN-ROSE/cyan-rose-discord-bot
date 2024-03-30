@@ -123,3 +123,44 @@ Button: Get Reason | User: maypop_the_dragon
 Button: Get Politic | User: maypop_the_dragon
 Command: Intro | User: jansemaja
 Command: Intro | User: jansemaja
+Logging Initialized.
+Welcome to Cyan Rose.
+Loaded command: pingcmd
+Loaded command: introcmd
+Loaded event: on_ready
+Logged in as Cyan Rose#1151 (1222974960944021514)
+Command: Intro | User: mossmarcia
+Button: Get Name | User: mossmarcia
+Button: Prefer Not To Share | User: mossmarcia
+Logging Initialized.
+Welcome to Cyan Rose.
+Loaded command: pingcmd
+Loaded command: introcmd
+Loaded event: on_ready
+Logged in as Cyan Rose#1151 (1222974960944021514)
+Command: Intro | User: mossmarcia
+Button: Get Name | User: mossmarcia
+Button: Prefer Not To Share | User: mossmarcia
+Logging Initialized.
+Welcome to Cyan Rose.
+Loaded command: pingcmd
+Loaded command: introcmd
+Loaded event: on_ready
+Command: Intro | User: mossmarcia
+Logged in as Cyan Rose#1151 (1222974960944021514)
+Button: Get Name | User: mossmarcia
+Button: Prefer Not To Share | User: mossmarcia
+Dropdown: Birth | User: mossmarcia | Data: ['28-32']
+Logging Initialized.
+Welcome to Cyan Rose.
+Loaded command: pingcmd
+Loaded command: introcmd
+Loaded event: on_ready
+Logged in as Cyan Rose#1151 (1222974960944021514)
+Command: Intro | User: mossmarcia
+Button: Get Name | User: mossmarcia
+Button: Prefer Not To Share | User: mossmarcia
+Dropdown: Birth | User: mossmarcia | Data: ['18-22']
+Added user's birth year range to the database.
+Button: Get Reason | User: mossmarcia
+Button: Get Politic | User: mossmarcia
