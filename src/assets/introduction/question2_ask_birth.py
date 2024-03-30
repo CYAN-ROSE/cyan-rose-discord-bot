@@ -38,6 +38,9 @@ class birth_modal(Modal):
         if year < 1900 or year > int(date.year + 1):
             return await interaction.response.send_message(f"Invalid year! Please enter a year between 1900 and {int(date.year + 1)}.")
 
+        if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 1).exists():
+            Introduction.update(introduction=self.name_input.value).where(Introduction.user_id == interaction.user.id, Introduction.part == 1).execute()
+
         Introduction.create(user_id=interaction.user.id, part=1, introduction=f"{self.birth_input.value}")
         await interaction.response.edit_message(embed=question3_ask_reason.reason_embed, view=question3_ask_reason.reason_view())
 

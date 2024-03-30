@@ -34,7 +34,11 @@ class birth_view(View):
     async def interaction_check(self, interaction: Interaction):
         data = self.dropdown.values
         logger.debug(f"Dropdown: Birth | User: {interaction.user} | Data: {data}")
-        Introduction.create(user_id=interaction.user.id, part=1, introduction=f"age range = {self.dropdown.values[0]}")
+
+        if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 1).exists():
+            Introduction.update(introduction=self.dropdown.values[0]).where(Introduction.user_id == interaction.user.id, Introduction.part == 1).execute()
+        else:
+            Introduction.create(user_id=interaction.user.id, part=1, introduction=f"age range = {self.dropdown.values[0]}")
         logger.debug("Added user's birth year range to the database.")
         await interaction.response.edit_message(embed=question3_ask_reason.reason_embed, view=question3_ask_reason.reason_view())
 

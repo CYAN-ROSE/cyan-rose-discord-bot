@@ -21,8 +21,11 @@ class name_modal(Modal):
         self.add_item(self.name_input)
     
     async def interaction_check(self, interaction: Interaction):
-        
-        Introduction.create(user_id=interaction.user.id, part=0, introduction=self.name_input.value)
+
+        if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 0).exists():
+            Introduction.update(introduction=self.name_input.value).where(Introduction.user_id == interaction.user.id, Introduction.part == 0).execute()
+        else:
+            Introduction.create(user_id=interaction.user.id, part=0, introduction=self.name_input.value)
         await interaction.response.edit_message(embed=question2_ask_birth.birth_embed, view=question2_ask_birth.birth_view())
 
 class name_view(View):

@@ -23,7 +23,10 @@ class politic_modal(Modal):
     
     async def interaction_check(self, interaction: Interaction):
         
-        Introduction.create(user_id=interaction.user.id, part=3, introduction=self.politic_input.value)
+        if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 3).exists():
+            Introduction.update(introduction=self.politic_input.value).where(Introduction.user_id == interaction.user.id, Introduction.part == 3).execute()
+        else:
+            Introduction.create(user_id=interaction.user.id, part=3, introduction=self.politic_input.value)
         await interaction.response.edit_message(content="Thank you for your response! Your application has been submitted and will be reviewed by our staff team. We will get back to you as soon as possible!", embed=None, view=None)
 
         channel = await client.fetch_channel(1222036326019498005)

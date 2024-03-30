@@ -21,8 +21,10 @@ class reason_modal(Modal):
         self.add_item(self.reason_input)
     
     async def interaction_check(self, interaction: Interaction):
-        
-        Introduction.create(user_id=interaction.user.id, part=2, introduction=self.reason_input.value)
+        if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 2).exists():
+            Introduction.update(introduction=self.reason_input.value).where(Introduction.user_id == interaction.user.id, Introduction.part == 2).execute()
+        else:
+            Introduction.create(user_id=interaction.user.id, part=2, introduction=self.reason_input.value)
         await interaction.response.edit_message(embed=question4_ask_politic.politic_embed, view=question4_ask_politic.politic_view())
 
 class reason_view(View):
