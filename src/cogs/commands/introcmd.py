@@ -1,7 +1,7 @@
 from discord import app_commands, Interaction
 from discord.ext import commands
 
-from assets.introduction import question1_ask_name
+from assets.introduction import question0_front_face
 
 import logging
 
@@ -15,7 +15,7 @@ class IntroCmd(commands.Cog):
     async def intro(self, interaction : Interaction):
         logger.info(f"Command: Intro | User: {interaction.user}")
 
-        await interaction.user.send(embed=question1_ask_name.name_embed, view=question1_ask_name.name_view())
+        await interaction.user.send(embed=question0_front_face.disclosure_embed, view=question0_front_face.disclosure_modal())
 
         await interaction.response.send_message('You have been sent a DM with the introduction interview!')
 
