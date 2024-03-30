@@ -9,7 +9,7 @@ import logging
 logger = logging.getLogger("cyan")
 
 birth_embed = Embed(title="When were you born?", 
-                    description="Hint: Click the button below and enter your date of birth! if you don't feel comfortable sharing your date of birth, you can click the 'Prefer not to share' button!\n\nPlease do note we do not applicants under the age of 13 due to Discord's Terms of Service.",
+                    description="Hint: Click the button below and enter your date of birth! If you don't feel comfortable sharing your date of birth, you can click the 'Prefer not to share' button!\n\nPlease do note we don't accept applicants under the age of 13 due to Discord's Terms of Service.",
                     color=0x00ffff,)
 birth_embed.set_thumbnail(url="https://raw.githubusercontent.com/Society-of-the-Cyan-Rose/cyan-rose-discord-bot/main/src/assets/cyan-rose.png")
 
