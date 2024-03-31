@@ -13,7 +13,8 @@ class PingCmd(commands.Cog):
     async def ping(self, interaction : Interaction):
         latency : int= self.bot.latency * 1000
 
-        logger.info(f"Command: Ping | Latency: {latency}ms")
+        logger.info(f"Command: Ping | User: {interaction.user.name}")
+        logger.debug(f"Latency: {latency}ms")
 
         await interaction.response.send_message(f"Pong! Latency: {round(latency)}ms")
 

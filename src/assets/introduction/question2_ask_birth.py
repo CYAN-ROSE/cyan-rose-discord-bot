@@ -40,8 +40,11 @@ class birth_modal(Modal):
 
         if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 1).exists():
             Introduction.update(introduction=self.birth_input.value).where(Introduction.user_id == interaction.user.id, Introduction.part == 1).execute()
+            logger.debug(f"Updated birth for user: {interaction.user}")
         else:
             Introduction.create(user_id=interaction.user.id, part=1, introduction=f"{self.birth_input.value}")
+            logger.debug(f"Created birth for user: {interaction.user}")
+        logger.debug(f"Passing to: question3_ask_reason")
         await interaction.response.edit_message(embed=question3_ask_reason.reason_embed, view=question3_ask_reason.reason_view())
 
 class birth_view(View):
@@ -50,10 +53,11 @@ class birth_view(View):
 
     @button(label="Enter your date of birth", style=ButtonStyle.primary)
     async def get_birth_button(self, interaction : Interaction, button : Button):
-        logger.debug(f"Button: Get Birth | User: {interaction.user}")
+        logger.debug(f"Button: Get Birth - question2 - introduction | User: {interaction.user}")
         await interaction.response.send_modal(birth_modal())
     
     @button(label="Prefer not to share", style=ButtonStyle.danger)
     async def prefer_not_to_share_button(self, interaction : Interaction, button : Button):
-        logger.debug(f"Button: Prefer Not To Share | User: {interaction.user}")
+        logger.debug(f"Button: Prefer Not To Share - question2 - introduction | User: {interaction.user}")
+        logger.debug(f"Passing to: question2_point_5_pnts_birth")
         await interaction.response.edit_message(embed=question2_point_5_pnts_birth.birth_embed, view=question2_point_5_pnts_birth.birth_view())

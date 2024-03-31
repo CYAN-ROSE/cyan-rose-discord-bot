@@ -17,6 +17,8 @@ class birth_view(View):
     def __init__(self):
         super().__init__(timeout=None)
 
+        logger.debug("Dropdown: Birth - quesiton2.5 - introductions | initialization")
+
         self.birth_ranges = [
             SelectOption(label="13-17", value="13-17"),
             SelectOption(label="18-22", value="18-22"),
@@ -31,15 +33,18 @@ class birth_view(View):
         self.dropdown : Select = Select(custom_id="birth", placeholder="Select your birth year range", options=self.birth_ranges)
         self.add_item(self.dropdown)
 
+        logger.debug("Dropdown: Birth - quesiton2.5 - introductions | initialized")
+
     async def interaction_check(self, interaction: Interaction):
-        data = self.dropdown.values
-        logger.debug(f"Dropdown: Birth | User: {interaction.user} | Data: {data}")
+        logger.debug(f"Dropdown: Birth | User: {interaction.user}")
 
         if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 1).exists():
             Introduction.update(introduction=self.dropdown.values[0]).where(Introduction.user_id == interaction.user.id, Introduction.part == 1).execute()
+            logger.debug("Updated user's birth year range in the database.")
         else:
             Introduction.create(user_id=interaction.user.id, part=1, introduction=f"age range = {self.dropdown.values[0]}")
-        logger.debug("Added user's birth year range to the database.")
+            logger.debug("Added user's birth year range to the database.")
+        logger.debug(f"Passing to: question3_ask_reason")
         await interaction.response.edit_message(embed=question3_ask_reason.reason_embed, view=question3_ask_reason.reason_view())
 
     

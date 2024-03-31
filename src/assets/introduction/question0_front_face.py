@@ -21,5 +21,5 @@ class disclosure_view(View):
         
     @button(label="Continue", style=ButtonStyle.primary)
     async def continue_button(self, interaction : Interaction, button : Button):
-        logger.debug(f"Button: Continue | User: {interaction.user}")
+        logger.debug(f"Button: Continue - Question0 - introduction | User: {interaction.user}")
         await interaction.response.edit_message(embed=question1_ask_name.name_embed, view=question1_ask_name.name_view())

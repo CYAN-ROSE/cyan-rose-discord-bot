@@ -23,7 +23,9 @@ class reason_modal(Modal):
     async def interaction_check(self, interaction: Interaction):
         if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 2).exists():
             Introduction.update(introduction=self.reason_input.value).where(Introduction.user_id == interaction.user.id, Introduction.part == 2).execute()
+            logger.debug(f"Updated reason for user: {interaction.user}")
         else:
+            logger.debug(f"Created reason for user: {interaction.user}")
             Introduction.create(user_id=interaction.user.id, part=2, introduction=self.reason_input.value)
         await interaction.response.edit_message(embed=question4_ask_politic.politic_embed, view=question4_ask_politic.politic_view())
 
@@ -33,5 +35,5 @@ class reason_view(View):
 
     @button(label="Explain why you want to join", style=ButtonStyle.primary)
     async def get_reason_button(self, interaction : Interaction, button : Button):
-        logger.debug(f"Button: Get Reason | User: {interaction.user}")
+        logger.debug(f"Button: Get Reason - question3 - introduction | User: {interaction.user}")
         await interaction.response.send_modal(reason_modal())

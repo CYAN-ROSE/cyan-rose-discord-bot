@@ -25,11 +25,14 @@ class politic_modal(Modal):
         
         if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 3).exists():
             Introduction.update(introduction=self.politic_input.value).where(Introduction.user_id == interaction.user.id, Introduction.part == 3).execute()
+            logger.debug(f"Updated political stance for user: {interaction.user}")
         else:
             Introduction.create(user_id=interaction.user.id, part=3, introduction=self.politic_input.value)
+            logger.debug(f"Created political stance for user: {interaction.user}")
         await interaction.response.edit_message(content="Thank you for your response! Your application has been submitted and will be reviewed by our staff team. We will get back to you as soon as possible!", embed=None, view=None)
 
-        channel = await client.fetch_channel(1222036326019498005)
+        logger.debug(f"Passing to: introduction engine")
+        channel = await client.fetch_channel(1222036326019498005) # Fetch Moderation Channel
         await channel.send(embed=intro_engine.build(interaction))
 
 class politic_view(View):
@@ -38,5 +41,5 @@ class politic_view(View):
 
     @button(label="Explain your political stance", style=ButtonStyle.primary)
     async def get_politic_button(self, interaction : Interaction, button : Button):
-        logger.debug(f"Button: Get Politic | User: {interaction.user}")
+        logger.debug(f"Button: Get Politic - question4 - introduction | User: {interaction.user}")
         await interaction.response.send_modal(politic_modal())

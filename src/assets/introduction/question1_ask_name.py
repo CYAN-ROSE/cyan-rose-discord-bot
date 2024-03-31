@@ -24,8 +24,11 @@ class name_modal(Modal):
 
         if Introduction.select().where(Introduction.user_id == interaction.user.id, Introduction.part == 0).exists():
             Introduction.update(introduction=self.name_input.value).where(Introduction.user_id == interaction.user.id, Introduction.part == 0).execute()
+            logger.debug(f"Updated name for user: {interaction.user}")
         else:
             Introduction.create(user_id=interaction.user.id, part=0, introduction=self.name_input.value)
+            logger.debug(f"Created name for user: {interaction.user}")
+        logger.debug(f"Passing to: question2_ask_birth")
         await interaction.response.edit_message(embed=question2_ask_birth.birth_embed, view=question2_ask_birth.birth_view())
 
 class name_view(View):
@@ -34,5 +37,5 @@ class name_view(View):
 
     @button(label="Enter your name", style=ButtonStyle.primary)
     async def get_name_button(self, interaction : Interaction, button : Button):
-        logger.debug(f"Button: Get Name | User: {interaction.user}")
+        logger.debug(f"Button: Get Name - question1 - introduction | User: {interaction.user}")
         await interaction.response.send_modal(name_modal())
