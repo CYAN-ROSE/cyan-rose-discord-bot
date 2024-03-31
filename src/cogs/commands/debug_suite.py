@@ -44,4 +44,4 @@ class DebugSuite(app_commands.Group):
             await interaction.response.send_message("Here are the last 10 lines of the log file.\n```arduino\n" + last_lines + "\n```")
 
 async def setup(bot : commands.Bot):
-    await bot.tree.add_command(DebugSuite(name='debug', description='Debug command suite.'))
+    bot.tree.add_command(DebugSuite(name='debug', description='Debug command suite.'))
