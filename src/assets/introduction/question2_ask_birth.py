@@ -10,16 +10,20 @@ import logging
 
 logger = logging.getLogger("cyan")
 
-birth_embed = Embed(title="When were you born?", 
-                    description="Hint: Click the button below and enter your date of birth! If you don't feel comfortable sharing your date of birth, you can click the 'Prefer not to share' button!\n\nPlease do note we don't accept applicants under the age of 13 due to Discord's Terms of Service.",
+birth_embed = Embed(title="When were you born?",
+                    description=(
+                      "The Society does not accept applicants who "
+                      "are under 13 years old due to Discord's terms "
+                      "of service."
+                    ),
                     color=0x00ffff,)
 birth_embed.set_thumbnail(url="https://raw.githubusercontent.com/Society-of-the-Cyan-Rose/cyan-rose-discord-bot/main/src/assets/cyan-rose.png")
 
 class birth_modal(Modal):
     def __init__(self):
-        super().__init__(timeout=None, title="Enter your date of birth!")
+        super().__init__(timeout=None, title="When were you born?")
         
-        self.birth_input = TextInput(label="Enter your date of birth here:", placeholder="DD/MM/YYYY", min_length=10, max_length=10, required=True)
+        self.birth_input = TextInput(label="Full Date of Birth:", placeholder="DD/MM/YYYY", min_length=10, max_length=10, required=True)
         self.add_item(self.birth_input)
     
     async def interaction_check(self, interaction: Interaction):
@@ -51,12 +55,12 @@ class birth_view(View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @button(label="Enter your date of birth", style=ButtonStyle.primary)
+    @button(label="i was born on...", style=ButtonStyle.primary)
     async def get_birth_button(self, interaction : Interaction, button : Button):
         logger.debug(f"Button: Get Birth - question2 - introduction | User: {interaction.user}")
         await interaction.response.send_modal(birth_modal())
     
-    @button(label="Prefer not to share", style=ButtonStyle.danger)
+    @button(label="(prefer not to say)", style=ButtonStyle.danger)
     async def prefer_not_to_share_button(self, interaction : Interaction, button : Button):
         logger.debug(f"Button: Prefer Not To Share - question2 - introduction | User: {interaction.user}")
         logger.debug(f"Passing to: question2_point_5_pnts_birth")

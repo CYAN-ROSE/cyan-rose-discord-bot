@@ -8,16 +8,16 @@ import logging
 
 logger = logging.getLogger("cyan")
 
-reason_embed = Embed(title="Why do you want to join Cyan Rose?", 
-                    description="Hint: Click the button below to explain in short why you want you join us!",
+reason_embed = Embed(title="And why do you want to join?",
+                    description="", # No description needed for now?
                     color=0x00ffff,)
 reason_embed.set_thumbnail(url="https://raw.githubusercontent.com/Society-of-the-Cyan-Rose/cyan-rose-discord-bot/main/src/assets/cyan-rose.png")
 
 class reason_modal(Modal):
     def __init__(self):
-        super().__init__(timeout=None, title="Explain why you want to join Cyan Rose!")
+        super().__init__(timeout=None, title="Why do you want to join?")
         
-        self.reason_input = TextInput(label="Explain why you want to join Cyan Rose here:", placeholder="I want to join because...", min_length=10, max_length=500, style=TextStyle.paragraph, required=True)
+        self.reason_input = TextInput(label="Explain it here:", placeholder="I want to join because...", min_length=10, max_length=500, style=TextStyle.paragraph, required=True)
         self.add_item(self.reason_input)
     
     async def interaction_check(self, interaction: Interaction):
@@ -33,7 +33,7 @@ class reason_view(View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @button(label="Explain why you want to join", style=ButtonStyle.primary)
+    @button(label="because...", style=ButtonStyle.primary)
     async def get_reason_button(self, interaction : Interaction, button : Button):
         logger.debug(f"Button: Get Reason - question3 - introduction | User: {interaction.user}")
         await interaction.response.send_modal(reason_modal())

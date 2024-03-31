@@ -8,8 +8,12 @@ import logging
 
 logger = logging.getLogger("cyan")
 
-birth_embed = Embed(title="Roughly how old are you?", 
-                    description="Hint: Click the dropdown menu below and pick the range that fits you!\n\nPlease do note we don't accept applicants under the age of 13 due to Discord's Terms of Service.",
+birth_embed = Embed(title="Then about how old are you?", 
+                    description=(
+                      "The Society does not accept applicants who "
+                      "are under 13 years old due to Discord's terms "
+                      "of service."
+                    ),
                     color=0x00ffff,)
 birth_embed.set_thumbnail(url="https://raw.githubusercontent.com/Society-of-the-Cyan-Rose/cyan-rose-discord-bot/main/src/assets/cyan-rose.png")
 
@@ -46,5 +50,3 @@ class birth_view(View):
             logger.debug("Added user's birth year range to the database.")
         logger.debug(f"Passing to: question3_ask_reason")
         await interaction.response.edit_message(embed=question3_ask_reason.reason_embed, view=question3_ask_reason.reason_view())
-
-    

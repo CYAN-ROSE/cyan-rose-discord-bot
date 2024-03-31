@@ -9,16 +9,23 @@ import logging
 
 logger = logging.getLogger("cyan")
 
-politic_embed = Embed(title="What is your political stance?",
-                    description="Hint: Click the button below to explain in short what your political stance is!",
+politic_embed = Embed(title="Finally, what's your political leaning?",
+                    description=(
+                      "You should talk about what you actually "
+                      "believe, not just a party you support. "
+                      "If you do not know the technical terms, you "
+                      "can just use normal sentences. In fact, it's "
+                      "good to clarify, since labels mean slightly "
+                      "different things to different people."
+                    ),
                     color=0x00ffff,)
 politic_embed.set_thumbnail(url="https://raw.githubusercontent.com/Society-of-the-Cyan-Rose/cyan-rose-discord-bot/main/src/assets/cyan-rose.png")
 
 class politic_modal(Modal):
     def __init__(self):
-        super().__init__(timeout=None, title="Explain your political stance!")
+        super().__init__(timeout=None, title="What's your political leaning?")
         
-        self.politic_input = TextInput(label="Explain your political stance here:", placeholder="I am a...", min_length=10, max_length=500, style=TextStyle.paragraph, required=True)
+        self.politic_input = TextInput(label="Explain it here:", placeholder="I am a...", min_length=10, max_length=500, style=TextStyle.paragraph, required=True)
         self.add_item(self.politic_input)
     
     async def interaction_check(self, interaction: Interaction):
@@ -39,7 +46,7 @@ class politic_view(View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @button(label="Explain your political stance", style=ButtonStyle.primary)
+    @button(label="i think...", style=ButtonStyle.primary)
     async def get_politic_button(self, interaction : Interaction, button : Button):
         logger.debug(f"Button: Get Politic - question4 - introduction | User: {interaction.user}")
         await interaction.response.send_modal(politic_modal())
